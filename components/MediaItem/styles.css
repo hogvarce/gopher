@@ -26,3 +26,9 @@
 .imageBox img {
     border-radius: 5px;
 }
+
+.textBox {
+    width: 264px;
+    margin: 0 auto;
+}
+

@@ -16,7 +16,7 @@ class Search extends PureComponent {
             this.setState({
                 search: search,
             }, () => {
-                dispatch(onSearch(search));
+                dispatch(onSearch({ query: search }));
             });
         }
     }
@@ -26,7 +26,7 @@ class Search extends PureComponent {
         this.setState({
             search: e.target.value,
         }, () => {
-            dispatch(onSearch(this.state.search));
+            dispatch(onSearch({ query: this.state.search }));
         });
     };
 

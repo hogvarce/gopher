@@ -1,5 +1,5 @@
 .container {
-    width: 100vw;
+    width: 100%;
     padding: 140px 0;
 }
 
@@ -24,13 +24,13 @@
     padding: 0;
 }
 
-.list li {
+.list > div {
     padding: 0;
     margin-bottom: 10px;
     transition: transform 0.2s ease-out 0.05s;
 }
 
-.list li:hover {
+.list > div:hover {
     transform: translateZ(0) scale(1.1);
 }
 
@@ -74,7 +74,7 @@
 
 @media (min-width: 1635px) {
     .list {
-        --number-columns: 5;
+        --number-columns: 4;
     }
 }
 
