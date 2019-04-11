@@ -1,0 +1,80 @@
+.container {
+    width: 100vw;
+    padding: 140px 0;
+}
+
+.inner {
+    --content-padding: 16px;
+    --content-size: calc(100vw - var(--content-padding) * 2);
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    width: var(--content-size);
+}
+
+.list {
+    display: grid;
+    --number-columns: 2;
+    --column-gap: 2vw;
+    grid-gap: 0 var(--column-gap);
+    grid-template-columns: repeat(var(--number-columns), 1fr);
+    list-style-type: none;
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.list li {
+    padding: 0;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-out 0.05s;
+}
+
+.list li:hover {
+    transform: translateZ(0) scale(1.1);
+}
+
+.findCount {
+    display: block;
+    text-align: center;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    .list {
+        --number-columns: 3;
+    }
+
+    .inner {
+        --content-padding: 28px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .list {
+        --number-columns: 4;
+    }
+
+    .inner {
+        --content-padding: 56px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .inner {
+        --content-padding: 52px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .inner {
+        --content-padding: 132px;
+    }
+}
+
+@media (min-width: 1635px) {
+    .list {
+        --number-columns: 5;
+    }
+}
+

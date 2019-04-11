@@ -1,0 +1,28 @@
+.title {
+    display: inherit;
+    font-size: 18px;
+    font-weight: 300;
+    height: 48px;
+    line-height: 24px;
+    margin: 0;
+    opacity: 0.5;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    transition: opacity 0.2s ease-out 0.05s;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.title:hover {
+    opacity: 1;
+}
+
+.imageBox {
+    display: flex;
+    justify-content: center;
+}
+
+.imageBox img {
+    border-radius: 5px;
+}
