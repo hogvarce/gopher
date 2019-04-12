@@ -74,7 +74,7 @@
 
 @media (min-width: 1635px) {
     .list {
-        --number-columns: 4;
+        --number-columns: 5;
     }
 }
 

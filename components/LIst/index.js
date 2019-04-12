@@ -14,18 +14,13 @@ function getId(item) {
 }
 
 class List extends PureComponent {
-    state = {
-        limit: 20,
-    };
 
     loadMoreContent = () => {
         const { query: { search } } = this.props.router;
-        const { dispatch, total_count } = this.props;
-        if (this.state.limit < total_count)
-            dispatch(onSearch({ query: search, limit: this.state.limit }))
-        this.setState({
-            limit: this.state.limit + 20,
-        });
+        const { dispatch, total_count, limit } = this.props;
+        if (limit < total_count) {
+            dispatch(onSearch({query: search, limit: limit + 20 }));
+        }
     };
 
     render() {
@@ -53,10 +48,11 @@ class List extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const { items, total_count } = state;
+    const { items, total_count, limit } = state;
     return {
         items,
         total_count,
+        limit,
     };
 };
 

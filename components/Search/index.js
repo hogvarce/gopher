@@ -1,7 +1,8 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'next/router'
-import { onSearch } from '../../store'
+import Router from 'next/router';
+import { onSearch, setServer, getServer } from '../../store'
 import css from './styles.css';
 
 class Search extends PureComponent {
@@ -11,8 +12,9 @@ class Search extends PureComponent {
 
     componentDidMount() {
         const { query: { search } } = this.props.router;
+        const { dispatch } = this.props;
+        dispatch(getServer());
         if (search) {
-            const { dispatch } = this.props;
             this.setState({
                 search: search,
             }, () => {
@@ -23,22 +25,45 @@ class Search extends PureComponent {
 
     onSearch = (e) => {
         const { dispatch } = this.props;
+        Router.push({
+            pathname: '/',
+            query: { search: e.target.value }
+        });
         this.setState({
             search: e.target.value,
         }, () => {
-            dispatch(onSearch({ query: this.state.search }));
+            dispatch(onSearch({ query: this.state.search, limit: 20 }));
         });
     };
 
+    changeServer = (e) => {
+        const { dispatch } = this.props;
+        dispatch(setServer({ server: e.target.value }));
+    };
+
     render() {
+        const { server } = this.props;
         const { search } = this.state;
         return (
             <div className={css.search}>
-                <input className={css.input} value={search} onChange={this.onSearch} />
+                <div>
+                    <label className={css.label}>server</label>
+                    <input className={css.server} value={server} onChange={this.changeServer} />
+                </div>
+                <div>
+                    <label className={css.label}>search</label>
+                    <input className={css.input} value={search} onChange={this.onSearch} />
+                </div>
             </div>
         );
     }
 }
 
+const mapStateToProps = (state) => {
+    const { server } = state;
+    return {
+        server,
+    };
+};
 
-export default connect()(withRouter(Search))
+export default connect(mapStateToProps)(withRouter(Search))
