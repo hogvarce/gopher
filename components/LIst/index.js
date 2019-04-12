@@ -1,6 +1,6 @@
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { Waypoint } from 'react-waypoint';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
 import { onSearch } from '../../store';
 import Item from './Item';
@@ -14,7 +14,6 @@ function getId(item) {
 }
 
 class List extends PureComponent {
-
     loadMoreContent = () => {
         const { query: { search } } = this.props.router;
         const { dispatch, total_items, limit } = this.props;

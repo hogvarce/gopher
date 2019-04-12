@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import Search from '../components/Search';
-import List from '../components/List';
+import List from '../components/LIst';
 import css from './index.css';
 
 const Index = () => (
