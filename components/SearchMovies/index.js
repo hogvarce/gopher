@@ -62,11 +62,12 @@ class Search extends PureComponent {
 
     componentDidMount() {
         const { dispatch, router: { query: genres } } = this.props;
+        const queryGeres = genres.genres ? genres.genres.split(',') : [];
         this.setState({
-            genres: genres.genres.split(','),
+            genres: queryGeres,
         });
         dispatch(getServer());
-        dispatch(onSearchMovies({ genres: genres.genres.split(',') }));
+        dispatch(onSearchMovies({ genres: queryGeres }));
     }
 
     changeServer = (e) => {
