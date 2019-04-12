@@ -17,17 +17,17 @@ class List extends PureComponent {
 
     loadMoreContent = () => {
         const { query: { search } } = this.props.router;
-        const { dispatch, total_count, limit } = this.props;
-        if (limit < total_count) {
+        const { dispatch, total_items, limit } = this.props;
+        if (limit < total_items) {
             dispatch(onSearch({query: search, limit: limit + 20 }));
         }
     };
 
     render() {
-        const {items, total_count} = this.props;
+        const {items, total_items} = this.props;
         return (
             <div>
-                <span className={css.findCount}>Найдено: {total_count}</span>
+                <span className={css.findCount}>Найдено: {total_items}</span>
                 <div className={css.container}>
                     <div className={css.inner}>
                         <div className={css.list}>
@@ -48,10 +48,10 @@ class List extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const { items, total_count, limit } = state;
+    const { items, total_items, limit } = state;
     return {
         items,
-        total_count,
+        total_items,
         limit,
     };
 };

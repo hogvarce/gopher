@@ -7,7 +7,7 @@ const defaultServer = 'http://127.0.0.1:8080';
 
 const exampleInitialState = {
     items: [],
-    total_count: 0,
+    total_items: 0,
     server: defaultServer,
     limit: 20,
 };
@@ -26,7 +26,7 @@ export const reducer = (state = exampleInitialState, action) => {
         case actionTypes.QUERY:
             return Object.assign({}, state, {
                 items: action.payload.items,
-                total_count: action.payload.total_count,
+                total_items: action.payload.total_items,
                 limit: action.payload.limit,
             });
         case actionTypes.SERVER:
@@ -52,8 +52,8 @@ export const onSearch = ({ query, offset = 0, limit = 20 }) => (dispatch, getSta
     const { server } = getState();
     return axios.get(`${server}/api/v1/search?query=${query}&offset=${offset}&limit=${limit}`)
         .then(({ data }) => {
-            const { items, total_count } = data;
-            return dispatch({ type: actionTypes.QUERY, payload: { items, total_count, limit } });
+            const { items, total_items } = data;
+            return dispatch({ type: actionTypes.QUERY, payload: { items, total_items, limit } });
         })
         .catch(error => console.log(error));
 };
