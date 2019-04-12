@@ -24,9 +24,9 @@ class Search extends PureComponent {
     }
 
     onSearch = (e) => {
-        const { dispatch } = this.props;
+        const { dispatch, router: { pathname } } = this.props;
         Router.push({
-            pathname: '/',
+            pathname,
             query: { search: e.target.value }
         });
         this.setState({
@@ -60,9 +60,9 @@ class Search extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const { server } = state;
+    const { url } = state.server;
     return {
-        server,
+        server: url,
     };
 };
 

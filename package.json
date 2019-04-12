@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "prod": "next export"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "@tippy.js/react": "^2.1.2",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.18.0",

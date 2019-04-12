@@ -2,16 +2,9 @@ import { PureComponent } from 'react';
 import { Waypoint } from 'react-waypoint';
 import { connect } from 'react-redux'
 import { withRouter } from 'next/router';
-import { onSearch } from '../../store';
+import { onSearchMovies } from '../../store';
 import Item from './Item';
 import css from './styles.css';
-
-function getId(item) {
-    if (item.epg) {
-        return item.epg.id;
-    }
-    return item.media_item.id;
-}
 
 class List extends PureComponent {
 
@@ -19,7 +12,7 @@ class List extends PureComponent {
         const { query: { search } } = this.props.router;
         const { dispatch, total_items, limit } = this.props;
         if (limit < total_items) {
-            dispatch(onSearch({query: search, limit: limit + 20 }));
+            dispatch(onSearchMovies({query: search, limit: limit + 20 }));
         }
     };
 
@@ -32,7 +25,7 @@ class List extends PureComponent {
                     <div className={css.inner}>
                         <div className={css.list}>
                             {items.map(item => (
-                                <Item key={getId(item)} item={item}/>
+                                <Item key={item.id} mediaItem={item}/>
                             ))}
                         </div>
                     </div>
@@ -48,7 +41,7 @@ class List extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const { items, total_items, limit } = state.search;
+    const { items, total_items, limit } = state.movies;
     return {
         items,
         total_items,
